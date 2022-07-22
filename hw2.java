@@ -9,6 +9,7 @@ public class hw2 {
         Scanner sc  = new Scanner(System.in);
 
         String board[][] = new String[6][6];
+        String board2[][] = new String[6][6];
 
         // initialize empty 2-dim array to store user inputs
         String[][] prev_values = new String[100][100];
@@ -32,19 +33,51 @@ public class hw2 {
         System.out.println("All set. Get ready to rumble!");
         System.out.println("");
 
+        // random variables between 1 and 5
+        int rand_j = random.nextInt(5);
+        int rand_k = random.nextInt(5);
+
         // initialize boolean variable which will be used to get out of the while loop if the game is over
         boolean outerBreak = true;
 
         while(outerBreak) {
-            // get the inputs from the user
-            System.out.print("Enter row number between 1-5: ");
-            int user_j = sc.nextInt();
-            System.out.print("Enter column number between 1-5: ");
-            int user_k = sc.nextInt();
 
-            // random variables between 1 and 5
-            int rand_j = random.nextInt(5);
-            int rand_k = random.nextInt(5);
+            // get the inputs from the user
+            System.out.print("Enter a row number: ");
+            int user_j = 0;
+            boolean check_j = true;
+
+            while (check_j) {
+                try {
+                    user_j = Integer.parseInt(sc.next());
+                } catch (NumberFormatException ex) {
+                    System.out.print("Not a number. Please enter a valid number: ");
+                    user_j = Integer.parseInt(sc.next());
+                }
+                while (user_j < 1 || user_j > 5) {
+                    System.out.print("Invalid number. Please enter a row number between 1-5: ");
+                    user_j = Integer.parseInt(sc.next());
+                }
+                check_j = false;
+            }
+
+            System.out.print("Enter a column number: ");
+            int user_k = 0;
+            boolean check_k = true;
+
+            while (check_k) {
+                try {
+                    user_k = Integer.parseInt(sc.next());
+                } catch (NumberFormatException ex) {
+                    System.out.print("Not a number. Please enter a valid number: ");
+                    user_k = Integer.parseInt(sc.next());
+                }
+                while (user_k < 1 || user_k > 5) {
+                    System.out.print("Invalid number. Please enter a column number between 1-5: ");
+                    user_k = Integer.parseInt(sc.next());
+                }
+                check_k = false;
+            }
 
             // print the board again according to user inputs and random variables
             for(int i=0; i<=5; i++) {
